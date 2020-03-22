@@ -1,0 +1,55 @@
+{{ $urlPre := "https://covidtracking.com" }}
+{{ $gistJ := getJSON $urlPre "/api/us" }}
+
+<h2>How many total cases of Covid-19 in the US currently?</h2>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Cases</th>
+    <th>Tests</th>
+  </tr>
+  {{ range last 3 (sort $gistJ ".date" "asc") }}
+
+  <tr>
+    <td>{{ now.Format "02 Jan 06 15:04 MST"  }}</td>
+    <td>{{ .positive }}</td>
+    <td>{{ .total }}</td>
+  </tr>
+</table>
+{{ end }}
+
+{{ $gistJ := getJSON $urlPre "/api/us/daily" }}
+{{ .Scratch.Set "testsYesterday" 0 }}
+{{ .Scratch.Set "casesYesterday" 0 }}
+<h2>How many new cases of Covid-19 in the US by day?</h2>
+<p>Data updates at 4pm EST.</p>
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Total Cases</th>
+    <th>New Tests</th>
+    <th>New Cases</th>
+  </tr>
+  {{ range last 3 (sort $gistJ ".date" "asc") }}
+  {{ $year := substr .date 0 4 }}
+  {{ $month := substr .date 4 2 }}
+  {{ $day := substr .date 6 2 }}
+  {{ $formDate := print $year "-" $month "-" $day}}
+   {{ if ne ($.Scratch.Get "testsYesterday") 0 }}
+      <tr>
+        <td>{{ dateFormat "Jan 2" $formDate }}</td>
+        <td>{{ .positive }}</td>
+        <td>
+          <!-- Tests Today -->
+          {{ sub .total ($.Scratch.Get "testsYesterday") }}
+        </td>
+        <td>
+            <!-- New Cases Today -->
+            {{ sub .positive ($.Scratch.Get "casesYesterday") }}
+        </td>
+      </tr>
+    {{ end }}
+    {{ $.Scratch.Set "testsYesterday" .total }}
+    {{ $.Scratch.Set "casesYesterday" .positive }}
+  {{ end }}
+</table>

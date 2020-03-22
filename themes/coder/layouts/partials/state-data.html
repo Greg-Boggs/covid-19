@@ -1,0 +1,37 @@
+{{ $urlPre := "https://covidtracking.com" }}
+{{ $gistJ := getJSON $urlPre "/api/states/daily?state=" .Params.state }}
+{{ .Scratch.Set "testsYesterday" 0 }}
+{{ .Scratch.Set "casesYesterday" 0 }}
+<table>
+  <tr>
+    <th>Date</th>
+    <th>New Cases</th>
+    <th>Total Cases</th>
+    <th>New Tests</th>
+    <th>Total Tests</th>
+
+    {{ range last 4 (sort $gistJ ".date" "asc")}}
+    {{ $year := substr .date 0 4 }}
+    {{ $month := substr .date 4 2 }}
+    {{ $day := substr .date 6 2 }}
+    {{ $formDate := print $year "-" $month "-" $day}}
+    {{ if ne ($.Scratch.Get "testsYesterday") 0 }}
+    <tr>
+      <td>{{ dateFormat "Jan 2" $formDate }}</td>
+      <td>
+        <!-- New Cases Today -->
+        {{ sub .positive ($.Scratch.Get "casesYesterday") }}
+      </td>
+      <td>{{ .positive }}</td>
+
+      <td>
+        <!-- Tests Today -->
+        {{ sub .total ($.Scratch.Get "testsYesterday") }}
+      </td>
+      <td>{{ .total }}</td>
+    </tr>
+  {{ end }}
+  {{ $.Scratch.Set "testsYesterday" .total }}
+  {{ $.Scratch.Set "casesYesterday" .positive }}
+  {{ end }}
+</table>
