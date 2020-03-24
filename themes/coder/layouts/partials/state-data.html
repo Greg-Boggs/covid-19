@@ -10,7 +10,7 @@
     <th>New Tests</th>
     <th>Total Tests</th>
 
-    {{ range last 4 (sort $gistJ ".date" "asc")}}
+    {{ range (sort $gistJ ".date" "asc")}}
     {{ $year := substr .date 0 4 }}
     {{ $month := substr .date 4 2 }}
     {{ $day := substr .date 6 2 }}

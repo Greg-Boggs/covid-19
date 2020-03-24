@@ -8,7 +8,7 @@
     <th>Cases</th>
     <th>Tests</th>
   </tr>
-  {{ range last 4 (sort $gistJ ".date" "asc") }}
+  {{ range (sort $gistJ ".date" "asc") }}
 
   <tr>
     <td>{{ now.Format "02 Jan 06 15:04 MST"  }}</td>
@@ -30,7 +30,7 @@
     <th>New Tests</th>
     <th>New Cases</th>
   </tr>
-  {{ range last 4 (sort $gistJ ".date" "asc") }}
+  {{ range (sort $gistJ ".date" "asc") }}
   {{ $year := substr .date 0 4 }}
   {{ $month := substr .date 4 2 }}
   {{ $day := substr .date 6 2 }}
