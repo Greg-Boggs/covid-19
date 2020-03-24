@@ -48,6 +48,11 @@ canonifyurls = true
         [languages.en.menu]
 
             [[languages.en.menu.main]]
+            name = "State Data"
+            weight = 1
+            url = "posts/"
+
+            [[languages.en.menu.main]]
             name = "About"
             weight = 1
             url = "about/"
