@@ -11,3 +11,5 @@ externalLink = ""
 +++
 
 Oregon data is sometimes zero because our health department is slow updating their website.
+
+Want even more data? Go expand the tables with the little + symbols at the [Oregon Health Authority](https://govstatus.egov.com/OR-OHA-COVID-19).
