@@ -9,7 +9,7 @@ Built from:
 
 * [Covid Tracking API](https://covidtracking.com/)
 * You can get the code for this dashboard or contribute on [GitHub](https://github.com/greg-boggs/covid-19).
-* You can hire me or find out about me at [my website](https://www.gregboggs.com/.
+* You can hire me or find out about me at [my website](https://www.gregboggs.com/).
 
 Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/greg-boggs/covid-19/issues/new) or [ask me on Twitter](https://twitter.com/gregory_boggs).
 
