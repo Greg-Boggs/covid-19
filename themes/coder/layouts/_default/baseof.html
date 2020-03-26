@@ -63,6 +63,10 @@
       <link rel="stylesheet" href="{{ . | relURL }}" />
     {{ end }}
 
+    {{ if .Site.Params.jquery }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/{{ .Site.Params.jquery }}/jquery.min.js"></script>
+
+    {{ end }}
     {{ range .Site.Params.custom_js }}
       <script src="{{ . | relURL }}"></script>
     {{ end }}

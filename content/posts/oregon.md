@@ -9,3 +9,5 @@ categories = []
 state = "OR"
 externalLink = ""
 +++
+
+Oregon data is sometimes zero because our health department is slow updating their website.

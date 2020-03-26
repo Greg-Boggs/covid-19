@@ -27,11 +27,17 @@ canonifyurls = true
     # Series see also post count
     maxSeeAlsoItems = 5
 
+    # jQuery
+    jquery = "3.4.1"
+
+    # MailChimp
+    MailChimp = true
+
     # Custom CSS
     custom_css = []
 
     # Custom JS
-    custom_js = []
+    custom_js = ["scripts.js"]
 
 
 [taxonomies]
