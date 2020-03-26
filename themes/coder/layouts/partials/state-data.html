@@ -6,9 +6,10 @@
   <tr>
     <th>Date</th>
     <th>New Cases</th>
-    <th>Total Cases</th>
     <th>New Tests</th>
+    <th>Total Cases</th>
     <th>Total Tests</th>
+    <th>Total Deaths</th>
 
     {{ range (sort $gistJ ".date" "asc")}}
     {{ $year := substr .date 0 4 }}
@@ -22,13 +23,13 @@
         <!-- New Cases Today -->
         {{ sub .positive ($.Scratch.Get "casesYesterday") }}
       </td>
-      <td>{{ .positive }}</td>
-
       <td>
         <!-- Tests Today -->
         {{ sub .total ($.Scratch.Get "testsYesterday") }}
       </td>
+      <td>{{ .positive }}</td>
       <td>{{ .total }}</td>
+      <td>{{ .deaths }}</td>
     </tr>
   {{ end }}
   {{ $.Scratch.Set "testsYesterday" .total }}
