@@ -12,7 +12,7 @@ canonifyurls = true
 [params]
     author = ""
     description = "Covid 19 Tracker"
-    info = "Corona Dashboard"
+    info = "How many new cases of Corvid-19 were there in the US? | Corona Dashboard"
     dateformat = "Jan 2"
 
     rtl = false
