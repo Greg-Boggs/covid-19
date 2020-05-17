@@ -1,5 +1,5 @@
 {{ $urlPre := "https://covidtracking.com" }}
-{{ $gistJ := getJSON $urlPre "/api/states/daily?state=" .Params.state }}
+{{ $gistJ := getJSON $urlPre "/api/v1/states/daily.json" }}
 {{ .Scratch.Set "testsYesterday" 0 }}
 {{ .Scratch.Set "casesYesterday" 0 }}
 <table>
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    {{ range (sort $gistJ ".date" "asc")}}
+    {{ range where (sort $gistJ ".date") ".state" $.Params.state }}
       {{ $year := substr .date 0 4 }}
       {{ $month := substr .date 4 2 }}
       {{ $day := substr .date 6 2 }}
@@ -27,13 +27,13 @@
         </td>
         <td>
           <!-- Tests Today -->
-          {{ sub .total ($.Scratch.Get "testsYesterday") }}
+          {{ sub .totalTestResults ($.Scratch.Get "testsYesterday") }}
         </td>
         <td>{{ .positive }}</td>
         <td>{{ .total }}</td>
         <td>{{ .death }}</td>
       </tr>
-      {{ $.Scratch.Set "testsYesterday" .total }}
+      {{ $.Scratch.Set "testsYesterday" .totalTestResults }}
       {{ $.Scratch.Set "casesYesterday" .positive }}
     {{ end }}
   </tbody>
