@@ -3,7 +3,7 @@ title = "About Corona Dashboard"
 slug = "about"
 +++
 
-I got tired of reading the news every day to find out how many new cases we had today. The other dashboards required me to do math, and they were overwhelming to look at every day. So, this is just a print of the new cases by state and in the US. If folks are interested, I might add other countries.
+I got tired of reading the news every day to find out how many new cases we had today. The other dashboards required me to do math, and they were overwhelming to look at every day. So, this is just a print of the new cases by state and in the US.
 
 Built from:
 
